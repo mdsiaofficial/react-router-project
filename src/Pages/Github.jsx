@@ -1,35 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLoaderData } from 'react-router-dom'
 
 export default function Github() {
+  const data = useLoaderData()
+  // const [data, setData] = useState([])
+  // useEffect(() => {
+  //   fetch('https://api.github.com/users/mdsiaofficial')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       // console.log(data);
+  //       setData(data);
+  //     })
+  // }, []);
+
   return (
-    <div className="py-16 bg-white">
-      <div className="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
-        <div className="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
-          <div className="md:5/12 lg:w-5/12">
-            <img
-              src="https://tailus.io/sources/blocks/left-image/preview/images/startup.png"
-              alt="image"
-            />
-          </div>
-          <div className="md:7/12 lg:w-6/12">
-            <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
-              React development is carried out by passionate developers
-            </h2>
-            <p className="mt-6 text-gray-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum omnis voluptatem
-              accusantium nemo perspiciatis delectus atque autem! Voluptatum tenetur beatae unde
-              aperiam, repellat expedita consequatur! Officiis id consequatur atque doloremque!
-            </p>
-            <p className="mt-4 text-gray-600">
-              Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at?
-              Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className='text-center m-4 bg-gray-600 text-white p-4 text-3xl'>Github followers: {data.followers}
+      <img src={data.avatar_url} alt="Git picture" width={300} />
     </div>
-  );
+  )
 }
 
-// roll: 113625
-// reg: 2110885502
+export const githubInfoLoader = async () => {
+  const response = await fetch("https://api.github.com/users/mdsiaofficial");
+
+  return response;
+}
