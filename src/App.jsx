@@ -1,23 +1,61 @@
 import { useState } from 'react'
-import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer/Footer";
-import Home from "./Components/Home/Home";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, RouterProvider, createBrowserRouter } from "react-router-dom";
 import './App.css'
-import MainLayout from './MainLayout'
+import Header from './Pages/Header';
+import Home from './Pages/Home';
+import Footer from './Pages/Footer';
+import MainLayout from './MainLayout';
+import About from './Pages/About';
+import Contact from './Pages/Contact';
+import Goal from './Pages/Goal';
+import Github from './Pages/Github';
 
+
+const router = createBrowserRouter([
+  {
+    path:"/", 
+    element:<MainLayout/>,
+    children:[
+      {
+        path:"",
+        element:<Home/>
+      },
+      {
+        path:"about",
+        element:<About/>
+      },
+      {
+        path:"contact",
+        element:<Contact/>
+      },
+      {
+        path:"Goal",
+        element:<Goal/>
+      },
+      {
+        path:"Github",
+        element:<Github/>
+      },
+    ]
+  }
+])
 function App() {
   
 
   return (
-    <div className=" p-6 bg-violet-600 border-4 border-violet-300 justify-center items-center flex m-5">
-      
-      <h1 className="w-3/4 bg-green-400 text-red-700 text-center text-4xl font-mono">
-        React Router Ashiq
-      </h1>
-      
-    </div>
+    
+    <>
+      <h1 className='bg-[crimson] text-center text-4xl font-bold'>Hello</h1>
+
+      {/* new header trying here */}
+      {/* not working like this */}
+      {/* <Header/>
+      <Home/>
+      <Footer/> */}
+
+      <RouterProvider router={router}/>
+    </>
   )
 }
 
